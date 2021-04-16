@@ -6,6 +6,7 @@ using System.Text;
 
 namespace CreateEntityModel.AddDatabase.SqlServer.BLL
 {
+    //构建实体模型的类
     public class SqlServerEntityBuild : IEntityBuild
     {
         private List<TableInfo> TableInfo { get; set; }
@@ -13,20 +14,42 @@ namespace CreateEntityModel.AddDatabase.SqlServer.BLL
         {
             TableInfo = tableInfo;
         }
-
+        /// <summary>
+        /// 构建实体模型方法
+        /// </summary>
+        /// <param name="options"></param>
+        /// <returns></returns>
         public ICreateEntityFile EntityBuild(Action<EntityBuildModel> options)
         {
+            //构建实体模型需要的相关参数
             EntityBuildModel model = new EntityBuildModel();
+            //委托赋值
             options(model);
             Dictionary<string, string> fileContent = new Dictionary<string, string>();
+            //历遍数据库中表信息
             foreach (var item in TableInfo)
             {
+                //使用委托自定义类名规则
+                if (model.CustomClassName != null)
+                {
+                    item.TableName = model.CustomClassName(item.TableName);
+                }
+                //根据数据库表名，字段信息，构建实体模型
                 string content = CreatModel(item.TableName, item.ColumnInfos, model.NamespaceName, model.Using);
+                //将表名，内容加入字典
                 fileContent.Add(item.TableName, content);
             }
+            //返回创建模型文件的类
             return new CreateEntityFile(fileContent);
         }
-
+        /// <summary>
+        /// 构建实体模型,把相关信息按模型格式拼接成字符串
+        /// </summary>
+        /// <param name="tableName"></param>
+        /// <param name="columnInfos"></param>
+        /// <param name="namespaceName"></param>
+        /// <param name="reference"></param>
+        /// <returns></returns>
         private string CreatModel(string tableName, List<ColumnInfo> columnInfos, string namespaceName, List<string> reference = null)
         {
             StringBuilder attribute = new StringBuilder();

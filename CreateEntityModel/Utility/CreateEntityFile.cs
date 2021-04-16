@@ -20,6 +20,10 @@ namespace CreateEntityModel.Utility
         {
             FileContent = fileContent;
         }
+        /// <summary>
+        /// 创建实体模型
+        /// </summary>
+        /// <param name="folderPath"></param>
         public void Create(string folderPath)
         {
             if (!Directory.Exists(folderPath))

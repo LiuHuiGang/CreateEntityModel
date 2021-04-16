@@ -17,7 +17,10 @@ namespace CreateEntityModel.AddDatabase.SqlServer.DAL
             conn = new SqlConnection(ConnectionString);
             conn.Open();
         }
-
+        /// <summary>
+        /// 获取表信息
+        /// </summary>
+        /// <returns></returns>
         public List<TableInfo> GetTableInfo()
         {
             List<TableInfo> tables = new List<TableInfo>();
@@ -42,6 +45,11 @@ namespace CreateEntityModel.AddDatabase.SqlServer.DAL
             }
             return tables;
         }
+        /// <summary>
+        /// 获取表中字段信息
+        /// </summary>
+        /// <param name="tableName"></param>
+        /// <returns></returns>
         private List<ColumnInfo> GetFileds(string tableName)
         {
             List<ColumnInfo> _Fields = new List<ColumnInfo>();

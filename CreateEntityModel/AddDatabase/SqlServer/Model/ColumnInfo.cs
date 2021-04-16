@@ -4,6 +4,7 @@ using System.Text;
 
 namespace CreateEntityModel.AddDatabase.SqlServer.Model
 {
+    //数据库字段信息
     public class ColumnInfo
     {
         public string ColumnOrder { get; set; }

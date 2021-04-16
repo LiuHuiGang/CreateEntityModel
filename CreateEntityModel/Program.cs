@@ -7,6 +7,8 @@ using System.IO;
 
 namespace CreateEntityModel
 {
+   //主体逻辑
+   //读取数据库表中字段信息，拼接成实体类格式的字符串，把字符串写入后缀名为cs的文件中
     class Program
     {
         static void Main(string[] args)
@@ -15,18 +17,23 @@ namespace CreateEntityModel
             string connectionString = "";
             //文件创建保存地址
             string path = @"C:\Users\Administrator\Desktop\log\model\";
-            //创建默认构建器>添加数据库>实体类构建>创建文件
-            new CreateDefaultBuilder().AddMySql(connectionString)
-                .EntityBuild(o=> 
+
+             new CreateDefaultBuilder()      //创建默认构建器
+                .AddMySql(connectionString)  //添加数据库
+                .EntityBuild(options =>      //实体类构建
                 {
-                    o.NamespaceName = "Moeel";
-                    o.Using = new List<string>
+                    //命名空间名（必填）
+                    options.NamespaceName = "Model";
+                    //引用程序集（选填）
+                    options.Using = new List<string>
                     {
                         "System.IO",
                         "CreateEntityModel.AddDatabase.MySql.BLL"
                     };
+                    //使用委托自定义类名规则（默认类名与表名一致，选填）
+                    options.CustomClassName = fileName => fileName+"Model";
                 })
-                .Create(path);
+                .Create(path);   //创建文件
 
             Console.WriteLine("完成");
             Console.ReadLine();

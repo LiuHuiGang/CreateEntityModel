@@ -38,3 +38,4 @@ E:\Demo\自动生成实体类\CreateEntityModel\CreateEntityModel\bin\Debug\netc
 E:\Demo\自动生成实体类\CreateEntityModel\CreateEntityModel\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
 E:\Demo\自动生成实体类\CreateEntityModel\CreateEntityModel\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 E:\Demo\自动生成实体类\CreateEntityModel\CreateEntityModel\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+E:\Demo\自动生成实体类\CreateEntityModel\CreateEntityModel\obj\Debug\netcoreapp3.1\CreateEntityModel.csprojAssemblyReference.cache
