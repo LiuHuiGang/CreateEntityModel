@@ -1,0 +1,38 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Text;
+
+namespace CreateEntityModel.Utility
+{
+    public interface ICreateEntityFile
+    {
+        /// <summary>
+        /// 创建文件
+        /// </summary>
+        /// <param name="folderPath">文件路径</param>
+        void Create(string folderPath);
+    }
+    public class CreateEntityFile : ICreateEntityFile
+    {
+        private Dictionary<string, string> FileContent { get; set; }
+        public CreateEntityFile(Dictionary<string, string> fileContent)
+        {
+            FileContent = fileContent;
+        }
+        public void Create(string folderPath)
+        {
+            if (!Directory.Exists(folderPath))
+            {
+                //创建文件夹
+                Directory.CreateDirectory(folderPath);
+            }
+            foreach (var item in FileContent)
+            {
+                string filePath = folderPath + item.Key + ".cs";
+                File.WriteAllText(filePath, item.Value);
+                Console.WriteLine(item.Key + " 创建完成");
+            }
+        }
+    }
+}
