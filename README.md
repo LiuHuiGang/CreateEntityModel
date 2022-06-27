@@ -1,4 +1,4 @@
-#自动创建实体类，支持mysql、sqlserver数据库
+#自动创建数据库对应的实体类，支持mysql、sqlserver数据库
    
  <img width="524" alt="微信截图_20220627151737" src="https://user-images.githubusercontent.com/38210225/175881846-892e2a18-34c0-488a-859b-eba41c8d589f.png">
  
